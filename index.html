@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+	<link rel="stylesheet" href="css/style.css">
+
+	
+</head>
+<body>
+
+
+	<div id="container"></div>
+
+	<!-- <div class="s s-1"></div>
+	<div class="s s-2"></div>
+	<div class="s s-3"></div> -->
+
+	<section class="intro">
+		<div class="inner">
+		<!-- <h2 class="intro-heading js-trigger">私たちについて</h2> -->
+		<p class="intro-text js-trigger">
+			<!-- ITを通して人と関わり、人を救い、世界と関わる -->
+		</p>
+		</div>
+	</section>
+	<!-- </div> -->
+	<!-- <div class="s s-1">
+		<section class="about">
+			<div class="inner">
+			<h2 class="about-heading js-trigger">私たちについて</h2>
+			<p class="about-text js-trigger">
+				サンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキスト
+			</p>
+			</div>
+		</section>
+	</div> -->
+
+	<section class="service">
+		<div class="inner">
+			<!-- <h2 class="service-heading">SERVICE</h2> -->
+			<h2 class="service-heading">
+				<!-- <span class="en js-trigger">事業紹介</span> -->
+				<span class="jp js-trigger">BUSINESS</span>
+			</h2>
+			<ul class="service-list">
+				<div class="s s-1">
+				<li class="service-item js-trigger">
+					<a href="" class="service-link">
+						<!-- <p class="service-img"><img src="./assets/img/stas-ostrikov-32nRyuXamvQ-unsplash.jpg" alt=""></p> -->
+						<!-- <h3 class="service-title">
+							ゲーム開発
+						</h3> -->
+						<h3 class="service-title">
+							ゲームアプリ開発事業
+						</h3>
+						<p class="service-text">
+							サンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキスト
+						</p>
+					</a>
+				</li>
+				</div>
+				<div class="s s-2">
+				<li class="service-item js-trigger">
+					<a href="" class="service-link">
+						<!-- <p class="service-img"><img src="./assets/img/stas-ostrikov-32nRyuXamvQ-unsplash.jpg" alt=""></p> -->
+						<h3 class="service-title">
+							システム開発事業
+						</h3>
+						<p class="service-text">
+							サンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキスト
+						</p>
+					</a>
+				</li>
+				</div>
+				<div class="s s-3">
+				<li class="service-item js-trigger">
+					<a href="" class="service-link">
+						<!-- <p class="service-img"><img src="./assets/img/stas-ostrikov-32nRyuXamvQ-unsplash.jpg" alt=""></p> -->
+						<h3 class="service-title">
+							WEB制作事業
+						</h3>
+						<p class="service-text">
+							サンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキスト
+						</p>
+					</a>
+				</li>
+				</div>
+				<li class="service-item js-trigger">
+					<a href="" class="service-link">
+						<!-- <p class="service-img"><img src="./assets/img/stas-ostrikov-32nRyuXamvQ-unsplash.jpg" alt=""></p> -->
+						<p class="service-text">
+							サンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキスト
+						</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</section>
+	<script id="vertex-shader" type="x-shader/x-vertex">
+		attribute vec3 position;
+		attribute vec3 color;
+		attribute float alpha;
+		attribute vec2 rand;
+		uniform mat4 modelViewMatrix;
+		uniform mat4 projectionMatrix;
+		uniform float u_ratio;
+		uniform float u_time;
+		varying vec3 v_color;
+		varying float v_alpla;
+
+
+		attribute vec3 pos0;
+		attribute vec3 pos1;
+		attribute vec3 pos2;
+		attribute vec3 pos3;
+
+		uniform float test1;
+		uniform float test2;
+		uniform float test3;
+		
+		
+		void main() {
+			v_color = color;
+			v_alpla = alpha;
+		
+			vec3 newPos = mix(mix(mix(pos0, pos1, test1),pos2, test2), pos3, test3);
+
+			gl_Position = projectionMatrix * modelViewMatrix * vec4(newPos, 1.0);
+			gl_PointSize = 5.0;
+		}
+		</script>
+		
+		<!-- fragmentShader -->
+		<script id="fragment-shader" type="x-shader/x-fragment">
+			precision mediump float;
+		
+		varying vec3 v_color;
+		varying float v_alpla;
+
+		uniform sampler2D pointTexture;
+
+		const vec3 white = vec3(1.0);
+		const vec3 orange = vec3(0.0 / 100.0, 39.0 / 100.0, 82.0 / 100.0);
+		
+
+
+		// 単純なテクスチャ適用には  Material の map が適しており、
+		// 光源に対する反応やテクスチャの変更など、高度なシェーダーコードを必要としない場合にも適しています。
+
+		// 高度なカスタマイズやテクスチャ操作が必要な場合にはシェーダーを使用することが適切です。
+
+		// シェーダーコードを使用して直接 texture2D 関数を呼び出す方法は、より高度なカスタマイズが必要な場合に適しています。
+		// シェーダーを使用することで、点ごとに異なるテクスチャを適用することが可能であり、複雑な視覚効果を実現できます。
+		// また、テクスチャのサンプリングに関するカスタムロジックを実装できます。
+
+
+		void main() {
+			vec4 color = texture2D(pointTexture, gl_PointCoord.xy);
+			color.rgb *= mix(orange, v_color, 0.0);
+			// color.a *= 0.5 * vAlpha * alpha;
+
+			// color.a *= v_alpla;
+			color.a *= 1.0;
+
+			if(color.a == 0.0) discard;
+			
+			gl_FragColor = color;
+			// gl_FragColor = vec4(v_color, v_alpla);
+
+		}
+
+
+		// void main() {
+			// vec2 temp = gl_PointCoord - vec2(0.5);
+			// float f = dot(temp, temp);
+			// if (f > 0.25 ) {
+				// 	discard;
+				// }
+		
+				// gl_FragColor = vec4(v_color, v_alpla);
+		// }
+
+
+
+		</script>
+
+
+<script src="https://unpkg.com/three@0.146.0/build/three.min.js"></script>
+<script src="https://unpkg.com/three@0.147.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://unpkg.com/three@0.147.0/examples/js/math/MeshSurfaceSampler.js"></script>
+<script src="https://unpkg.co/gsap@3/dist/gsap.min.js"></script>
+<script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script src="index.js"></script>
+
+</body>
+</html>
