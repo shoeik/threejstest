@@ -51,7 +51,7 @@
 	
 		const size = width;
 	
-		const length = 15000;
+		const length = 1500;
 	
 		// const geometry = new THREE.Geomery();
 	
